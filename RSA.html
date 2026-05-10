@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSA Cipher</title>
+
+<link href="RSA.css" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="RSA.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔐 RSA Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            RSA is an asymmetric encryption algorithm that uses two keys:
+            a public key for encryption and a private key for decryption.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Algorithm</h2>
+        <pre class="algorithm">
+1. Choose two primes: p, q
+2. Compute n = p × q
+3. Compute φ(n) = (p-1)(q-1)
+4. Choose e such that gcd(e, φ) = 1
+5. Compute d such that:
+   d × e ≡ 1 mod φ(n)
+
+Public Key = (e, n)
+Private Key = (d, n)
+
+Encryption:
+C = M^e mod n
+
+Decryption:
+M = C^d mod n
+        </pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+        <pre class="code-block">
+Step 1: Choose primes
+p = 3, q = 11
+
+Step 2: Compute n
+n = 3 × 11 = 33
+
+Step 3: Compute φ(n)
+φ = (3-1)(11-1) = 2 × 10 = 20
+
+Step 4: Choose e
+e = 3  (coprime with 20)
+
+Step 5: Compute d
+d = 7 (because 3×7 = 21 ≡ 1 mod 20)
+
+Public Key = (3, 33)
+
+Step 6: Encrypt message
+M = 4
+
+C = 4^3 mod 33
+C = 64 mod 33 = 31
+
+Ciphertext = 31
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+
+        <pre class="code-block">
+Ciphertext: 31
+Private Key: d = 7
+
+M = 31^7 mod 33
+
+Result:
+M = 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </pre>
+    </div>
+    </div>
+
+    <div class="section">
+        <h2>Try It Yourself</h2>
+
+        <form id="rsaForm">
+
+            <div class="form-group">
+                <label>Message (number / text):</label>
+                <textarea id="inputText"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>p (prime number):</label>
+                <input type="number" id="p">
+            </div>
+
+            <div class="form-group">
+                <label>q (prime number):</label>
+                <input type="number" id="q">
+            </div>
+
+            <div class="form-group">
+                <label>e (public exponent):</label>
+                <input type="number" id="e">
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-encrypt" onclick="rsaEncrypt()">🔐 Encrypt</button>
+                <button type="button" class="btn-decrypt" onclick="rsaDecrypt()">🔓 Decrypt</button>
+            </div>
+
+            <div id="result" class="result">Result will appear here...</div>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

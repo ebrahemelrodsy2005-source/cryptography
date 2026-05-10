@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affine Cipher</title>
+
+<link href="affine.css" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="affine.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔢 Affine Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            Affine Cipher is a substitution cipher based on a mathematical linear function.
+            It is stronger than Caesar because it uses two keys instead of one.
+        </p>
+    </div>
+    <div class="section">
+        <h2>Algorithm</h2>
+        <pre class="algorithm">
+Encryption:
+E(x) = (a × x + b) mod 26
+
+Decryption:
+D(y) = a⁻¹ × (y - b) mod 26
+
+Where:
+x = letter position (A=0 ... Z=25)
+a = key (must be coprime with 26)
+b = shift value
+        </pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+        <pre class="code-block">
+Plaintext: HELLO WORLD
+a = 5, b = 8
+
+Step 1: Convert letters to numbers
+H=7 E=4 L=11 L=11 O=14
+W=22 O=14 R=17 L=11 D=3
+
+Step 2: Apply formula E(x) = (5x + 8) mod 26
+
+H → (5×7 + 8) = 43 → 17 → R
+
+E → (5×4 + 8) = 28 → 2  → C
+
+L → (5×11 + 8)= 63 → 11 → L
+
+L → 63 → 11 → L
+
+O → (5×14 + 8)= 78 → 0  → A
+
+W → (5×22+8)=118 → 14 → O
+O → 78 → 0 → A
+R → (5×17+8)=93 → 15 → P
+L → 63 → 11 → L
+D → (5×3 + 8)=23 → 23 → X
+
+Step 3: Result
+Ciphertext: RCLLA OAPLX
+        </pre>
+    </div>
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+
+        <pre class="code-block">
+Ciphertext: RCLLA OAPLX
+a = 5, b = 8
+
+Step 1: Find modular inverse of a
+5⁻¹ mod 26 = 21
+
+Step 2: Convert letters to numbers
+R=17 C=2 L=11 L=11 A=0
+O=14 A=0 P=15 L=11 X=23
+
+Step 3: Apply formula
+D(y) = 21 × (y - 8) mod 26
+
+R → H
+C → E
+L → L
+L → L
+A → O
+
+O → W
+A → O
+P → R
+L → L
+X → D
+
+Step 4: Result
+Plaintext: HELLO WORLD
+        </pre>
+    </div>
+    </div>
+            <div>
+                <div class="section">
+                    <h2>Try It Yourself</h2>
+                    <form id="affineForm">
+                        <div class="form-group">
+                            <label>a (must be coprime with 26):</label>
+                            <input type="number" id="a" min="1" max="25" value="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>b (0-25):</label>
+                            <input type="number" id="b" min="0" max="25" value="8" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Text:</label>
+                            <textarea id="inputText" placeholder="Enter text to encrypt/decrypt..." required>HELLO WORLD</textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-encrypt" onclick="affineEncrypt()">🔐 Encrypt</button>
+                            <button type="button" class="btn-decrypt" onclick="affineDecrypt()">🔓 Decrypt</button>
+                        </div>
+                        <div id="result" class="result">Result will appear here...</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

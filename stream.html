@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Cipher - Cryptography Explorer</title>
+    <link rel="stylesheet" href="stream.css">
+    <link rel="stylesheet" href="ui.css">
+    <script src="stream.js" defer></script>
+</head>
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>⚡ Stream Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="content">
+
+        <div class="section">
+            <h2>Overview</h2>
+            <p>
+                Stream Cipher encrypts data one character (or bit) at a time using XOR.
+                It is fast and used in real-time encryption systems.
+            </p>
+        </div>
+        <div class="section">
+            <div class="section">
+    <h2>Algorithm</h2>
+
+    <div class="algorithm">
+Encryption Process:
+
+1. Convert each character → ASCII value  
+2. Convert ASCII → Binary (8-bit)  
+3. Apply XOR between plaintext binary and key binary  
+4. Repeat key if needed  
+5. Convert result back to binary ciphertext  
+
+Decryption Process:
+
+1. Take binary ciphertext  
+2. Apply XOR between ciphertext binary and key binary 
+3. Binary (8-bit) → Convert ASCII
+4. Convert ASCII value → character
+
+Formula:
+C = (P ⊕ K)
+P = (C ⊕ K)
+    </div>
+</div>
+        </div>
+        <div class="examples">
+        <div class="section">
+    <h2>Encrypt Example</h2>
+
+    <div class="algorithm">
+Plaintext: H  
+Key:       K  
+
+Step 1: ASCII  
+H = 72 → 01001000  
+K = 75 → 01001011  
+
+Step 2: XOR  
+01001000  
+⊕ 01001011  
+= 00000011  
+
+Step 3: Binary Output  
+Ciphertext = 00000011
+
+
+    </div>
+</div>
+        <div class="section">
+            <h2>🔓 Decrypt Example</h2>
+
+            <div class="algorithm">
+Ciphertext: 00000011  
+Key: K  
+
+Step 1: Binary → ASCII
+K = 75 → 01001011  
+c= 00000011   
+
+Step 2: XOR with Key  
+00000011 ⊕ 01001011 = 01001000  
+
+Step 3: binary → ASCII
+01001000 =72 
+
+step4: Convert ASCII value → character
+72 → H
+Recovered Text = H
+            </div>
+        </div>
+        </div>
+        <div class="section">
+            <h2>Try It Yourself</h2>
+
+            <div class="form-group">
+                <label>Key:</label>
+                <input type="text" id="key" value="KEY">
+            </div>
+
+            <div class="form-group">
+                <label>Text:</label>
+                <textarea id="inputText">HELLO</textarea>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-encrypt" onclick="streamEncrypt()">🔐 Encrypt</button>
+                <button class="btn-decrypt" onclick="streamDecrypt()">🔓 Decrypt</button>
+            </div>
+
+            <div id="result" class="result">
+                Result will appear here...
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

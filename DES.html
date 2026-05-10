@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DES Cipher</title>
+
+<link rel="stylesheet" href="DES.css">
+<link rel="stylesheet" href="ui.css">
+<script src="DES.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔐 DES Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            DES (Data Encryption Standard) is a symmetric block cipher that works on 64-bit blocks
+            using Feistel structure and 16 rounds of processing.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Algorithm</h2>
+
+<pre class="algorithm">
+1. Plaintext → 64-bit block
+2. Initial Permutation (IP)
+3. Split into L0 and R0
+
+For 16 rounds:
+- Expand R
+- XOR with Round Key
+- Substitution (S-Boxes)
+- Permutation
+- Swap L and R
+
+Final:
+- Combine L16 + R16
+- Final Permutation (FP)
+</pre>
+    </div>
+
+    <div class="examples">
+
+        <div class="section">
+            <h2>🔐 Worked Example (Encryption)</h2>
+
+<pre class="code-block">
+Plaintext: HELLO123
+
+Step 1 → Convert to 64-bit block  
+Step 2 → Initial Permutation  
+Step 3 → Split L and R  
+
+Repeat 16 rounds:
+- Expansion
+- XOR Key
+- S-Box
+- Permutation
+- Swap
+
+Output:
+Ciphertext (HEX)
+</pre>
+        </div>
+
+        <div class="section">
+            <h2>🔓 Worked Example (Decryption)</h2>
+
+<pre class="code-block">
+Ciphertext (HEX):
+8a3f91c7...
+
+Key: mySecretKey
+
+Step 1 → Convert HEX to bits  
+Step 2 → Apply Initial Permutation  
+Step 3 → Run 16 rounds in reverse keys  
+Step 4 → Final Permutation  
+
+Result:
+Plaintext: HELLO123
+
+
+
+</pre>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Try It Yourself</h2>
+
+        <div class="form-group">
+            <label>Text / Cipher:</label>
+            <textarea id="inputText">HELLO</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Key:</label>
+            <input type="text" id="key" value="AABB09182736CCDD">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-encrypt" onclick="encryptDES()">🔐 Encrypt</button>
+            <button class="btn-decrypt" onclick="decryptDES()">🔓 Decrypt</button>
+        </div>
+
+        <div id="result" class="result">Result will appear here...</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

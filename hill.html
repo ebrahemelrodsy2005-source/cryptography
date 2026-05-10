@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hill Cipher</title>
+
+<link href="hill.css" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="hill.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>📊 Hill Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2> Overview</h2>
+        <p>
+            Hill Cipher is a polygraphic substitution cipher that encrypts letters in groups (vectors)
+            using matrix multiplication under modulo 26 arithmetic.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Algorithm</h2>
+        <pre class="algorithm">
+Encryption:
+C = K × P (mod 26)
+
+Decryption:
+P = K⁻¹ × C (mod 26)
+
+Where:
+K = key matrix
+P = plaintext vector
+C = ciphertext vector
+        </pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+        <pre class="code-block">
+Plaintext: HI
+Key Matrix:
+[3 3]
+[2 5]
+
+Step 1: Convert letters to numbers
+H=7 
+I=8
+
+Step 2: Split into vectors
+[7,8] 
+
+Step 3: Multiply by matrix (mod 26)
+
+[3 3]   [7,8]   → (3×7 + 3×8) = 45 → 19 = T
+[2 5]           → (2×7 + 5×8) = 54 → 2  = C
+
+Step 4: Result
+Ciphertext: TC
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+
+        <pre class="code-block">
+Ciphertext: TC
+
+Step 1: Find inverse matrix K⁻¹
+
+Step 2: Convert letters to numbers
+
+Step 3: Multiply K⁻¹ × C (mod 26)
+
+Step 4: Convert back to letters
+
+Result:
+Plaintext: HI
+
+
+
+
+
+
+
+        </pre>
+    </div>
+    </div>
+<div class="section">
+    <h2>Try Hill Cipher (2x2 or 3x3)</h2>
+    <form id="hillForm">
+        <div class="form-group">
+            <label>Matrix Size:</label>
+            <select id="matrixSize" onchange="updateMatrixInputs()">
+                <option value="2">2x2 Matrix</option>
+                <option value="3">3x3 Matrix</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Key Matrix:</label>
+            <div id="matrixInputs" class="matrix-input">
+                <input type="number" id="k11" min="0" max="25" value="3">
+                <input type="number" id="k12" min="0" max="25" value="3">
+                <input type="number" id="k21" min="0" max="25" value="2">
+                <input type="number" id="k22" min="0" max="25" value="5">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Text (length multiple of matrix size):</label>
+            <textarea id="inputText" placeholder="HI (for 2x2)" required>HI</textarea>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn-encrypt" onclick="hillEncrypt()">🔐 Encrypt</button>
+            <button type="button" class="btn-decrypt" onclick="hillDecrypt()">🔓 Decrypt</button>
+        </div>
+        <div id="result" class="result">Result will appear here...</div>
+        <div id="matrixDet" class="output-box"></div>
+    </form>
+</div>
+
+</body>
+</html>

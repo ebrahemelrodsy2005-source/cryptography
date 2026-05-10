@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AES Cipher</title>
+
+<link rel="stylesheet" href="AES.css">
+<link rel="stylesheet" href="ui.css">
+<script src="AES.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔐 AES Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            AES is a symmetric encryption algorithm that works on 128-bit blocks.
+            It uses multiple rounds of substitution, shifting, mixing, and XOR operations.
+        </p>
+    </div>
+
+    <!-- Algorithm -->
+    <div class="section">
+        <h2>Algorithm</h2>
+<pre class="algorithm">
+1. Text → ASCII → Hex
+2. Arrange into 4×4 Matrix
+3. AddRoundKey (XOR)
+
+Repeat:
+- SubBytes (S-Box)
+- ShiftRows
+- MixColumns
+- AddRoundKey
+
+Final Round:
+- SubBytes
+- ShiftRows
+- AddRoundKey
+</pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+<pre class="code-block">
+1. Text → ASCII → Hex
+2. Arrange into Matrix (State)
+
+3. AddRoundKey (XOR)
+
+4. Repeat:
+   - SubBytes (S-Box)
+   - ShiftRows
+   - MixColumns
+   - AddRoundKey
+5. Final Round (MixColumns)
+6. Matrix → Hex → Ciphertext
+
+Plaintext: HELLO
+→ Hex: 48 45 4C 4C 4F
+
+Encryption:
+AES(key, IV, data)
+Output:
+Random Base64 (changes every time)
+</pre>
+    </div>
+
+
+<div class="section">
+    <h2>🔓 Worked Example (Decryption)</h2>
+
+<pre class="code-block">
+Ciphertext (hex):
+b9847e2c2476...
+
+Password: mySecret
+
+Step 1 → Decode Base64 → bytes  
+Step 2 → Extract IV (first 12 bytes)  
+Step 3 → Extract Cipher data  
+Step 4 → Generate key using PBKDF2  
+Step 5 → AES Decrypt using same key + IV  
+
+Result:
+Plaintext: HELLO
+
+
+
+
+
+
+
+</pre>
+</div>
+</div>
+
+    <div class="section">
+        <h2>Try It Yourself</h2>
+
+        <div class="form-group">
+            <label>Text / Cipher:</label>
+            <textarea id="inputText">HELLO</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="text" id="key" value="Hema">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-encrypt" onclick="aesEncrypt()">🔐 Encrypt</button>
+            <button class="btn-decrypt" onclick="aesDecrypt()">🔓 Decrypt</button>
+        </div>
+
+        <div id="result" class="result">Result will appear here...</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

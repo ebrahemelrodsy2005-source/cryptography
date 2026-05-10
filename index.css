@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #ff00cc;
+    --secondary: #3333ff;
+    --glass: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.15);
+    --glow: rgba(255, 0, 200, 0.5);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #eee;
+
+    background: radial-gradient(circle at top, #2a003f, #0f0f1a 70%);
+    min-height: 100vh;
+
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease;
+}
+
+h1 {
+    font-size: 4.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    background: linear-gradient(90deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 30px var(--glow);
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+.intro {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+
+    border-radius: 25px;
+    font-size: 1.4rem;
+
+    padding: 40px;
+    margin-bottom: 50px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.4),
+        inset 0 0 10px rgba(255,255,255,0.05);
+
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.intro h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.intro h2::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff00cc, #3333ff);
+    display: block;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+.intro p {
+    color: #ddd;
+    margin-bottom: 10px;
+}
+
+.ciphers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.cipher-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+
+    border-radius: 25px;
+    padding: 30px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.3),
+        inset 0 0 10px rgba(255,255,255,0.05);
+
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cipher-card::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: 0.6s;
+}
+
+.cipher-card:hover::before {
+    left: 100%;
+}
+
+.cipher-card:hover {
+    transform: translateY(-20px) scale(1.05);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.6),
+        0 0 25px var(--glow);
+}
+
+
+.cipher-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+
+    filter: drop-shadow(0 0 10px var(--glow));
+}
+
+.cipher-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.cipher-card p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.cipher-btn {
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.cipher-btn::after {
+    content: "";
+    position: absolute;
+    width: 250%;
+    height: 250%;
+    top: -100%;
+    left: -100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 20%, transparent 20%);
+    transition: 0.5s;
+}
+
+.cipher-btn:hover::after {
+    top: 0;
+    left: 0;
+}
+
+.cipher-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255,0,200,0.7);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}

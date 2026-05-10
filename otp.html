@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Time Pad</title>
+
+<link href="otp.css" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="otp.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🛡️ One-Time Pad (OTP)</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            One-Time Pad (OTP) is a perfect encryption technique where each character is encrypted using a completely random key
+            that is as long as the message itself and used only once.
+        </p>
+
+        <div class="warning">
+            ⚠️ Real OTP requires truly random physical keys — software-based versions are for learning only.
+        </div>
+    </div>
+    <div class="section">
+        <h2>Algorithm</h2>
+        <pre class="algorithm">
+Encryption:
+E(i) = (P(i) + K(i)) mod 26
+
+Decryption:
+D(i) = (C(i) - K(i)) mod 26
+
+Rules:
+- Key length = message length
+- Key is random
+- Key used only once
+        </pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+        <pre class="code-block">
+Plaintext: HELLO
+Key:       XJRKY
+
+Step 1: Convert to numbers
+H=7 E=4 L=11 L=11 O=14
+X=23 J=9 R=17 K=10 Y=24
+
+Step 2: Apply OTP formula
+( P + K ) mod 26
+
+H → (7 + 23) = 30 → 4  → E
+E → (4 + 9)  = 13 → N
+L → (11 +17) = 28 → 2  → C
+L → (11+10)  = 21 → V
+O → (14+24)  = 38 → 12 → M
+
+Step 3: Result
+Ciphertext: ENCVM
+
+        </pre>
+    </div>
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+
+        <pre class="code-block">
+Ciphertext: ENCVM
+Key:       XJRKY
+
+Step 1: Convert to numbers
+
+E=4 N=13 C=2 V=21 M=12
+X=23 J=9  R=17 K=10 Y=24
+
+Step 2: Apply formula
+(P = C - K) mod 26
+
+E → (4 - 23) = 7  → H
+N → (13-9)   = 4  → E
+C → (2 -17)  = 11 → L
+V → (21-10)  = 11 → L
+M → (12-24)  = 14 → O
+
+Step 3: Result
+Plaintext: HELLO
+        </pre>
+    </div>
+    </div>
+              <div>
+                <div class="section">
+                    <h2>Try It Yourself</h2>
+                    <form id="otpForm">
+                        <div class="form-group">
+                            <label>Key (must match text length):</label>
+                            <input type="text" id="key" placeholder="Enter random key (A-Z only)" value="XJRKLYH" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Text:</label>
+                            <textarea id="inputText" placeholder="Enter text (length must match key)..." required>HELLO</textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn-encrypt" onclick="otpEncrypt()">🔐 Encrypt</button>
+                            <button type="button" class="btn-decrypt" onclick="otpDecrypt()">🔓 Decrypt</button>
+                            <button type="button" onclick="generateKey()" style="background: #9f7aea;">🎲 Generate Key</button>
+                        </div>
+                        <div id="result" class="result">Result will appear here...</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

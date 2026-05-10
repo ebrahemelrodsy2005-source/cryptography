@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptography Comparison</title>
+<link rel="stylesheet" href="comparison.css">
+<link rel="stylesheet" href="ui.css">
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔐 Cryptography Comparison</h1>
+        <p class="subtitle">Classical vs Modern vs Hash Functions</p>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>🔁 Symmetric vs Asymmetric</h2>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Symmetric</th>
+                <th>Asymmetric</th>
+            </tr>
+            <tr>
+                <td>Keys</td>
+                <td>Same key</td>
+                <td>Public + Private</td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td>Fast</td>
+                <td>Slow</td>
+            </tr>
+            <tr>
+                <td>Security</td>
+                <td>Depends on key secrecy</td>
+                <td>Higher security</td>
+            </tr>
+            <tr>
+                <td>Examples</td>
+                <td>AES, DES</td>
+                <td>RSA, ECC</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>📊 Classical Ciphers</h2>
+
+        <table>
+            <tr>
+                <th>Cipher</th>
+                <th>Type</th>
+                <th>Idea</th>
+                <th>Security</th>
+            </tr>
+
+            <tr><td>Caesar</td><td>Shift</td><td>Letter shift</td><td class="weak">Very Weak</td></tr>
+            <tr><td>Monoalphabetic</td><td>Substitution</td><td>Random mapping</td><td class="weak">Weak</td></tr>
+            <tr><td>Affine</td><td>Math</td><td>(ax+b) mod 26</td><td class="weak">Weak</td></tr>
+            <tr><td>Rail Fence</td><td>Transposition</td><td>Zigzag writing</td><td class="medium">Weak</td></tr>
+            <tr><td>Columnar</td><td>Transposition</td><td>Column reorder</td><td class="medium">Medium</td></tr>
+            <tr><td>Vigenère</td><td>Polyalphabetic</td><td>Keyword shift</td><td class="medium">Medium</td></tr>
+            <tr><td>Hill</td><td>Matrix</td><td>Linear algebra</td><td class="strong">Strong</td></tr>
+            <tr><td>OTP</td><td>Perfect</td><td>Random key</td><td class="perfect">Perfect</td></tr>
+
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🔐 Modern Encryption</h2>
+
+        <table>
+            <tr>
+                <th>Algorithm</th>
+                <th>Type</th>
+                <th>Function</th>
+            </tr>
+
+            <tr><td>AES</td><td>Symmetric</td><td>Block cipher standard</td></tr>
+            <tr><td>DES</td><td>Symmetric</td><td>Legacy block cipher</td></tr>
+            <tr><td>RSA</td><td>Asymmetric</td><td>Public key encryption</td></tr>
+            <tr><td>ECC</td><td>Asymmetric</td><td>Elliptic curve security</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🧬 Hash Functions (NEW)</h2>
+
+        <table>
+            <tr>
+                <th>Algorithm</th>
+                <th>Type</th>
+                <th>Output Size</th>
+                <th>Security</th>
+            </tr>
+
+            <tr><td>MD5</td><td>Hash</td><td>128-bit</td><td class="weak">Broken</td></tr>
+            <tr><td>SHA-1</td><td>Hash</td><td>160-bit</td><td class="weak">Weak</td></tr>
+            <tr><td>SHA-256</td><td>Hash</td><td>256-bit</td><td class="strong">Strong</td></tr>
+            <tr><td>SHA-512</td><td>Hash</td><td>512-bit</td><td class="strong">Very Strong</td></tr>
+
+        </table>
+    </div>
+    <div class="section">
+        <h2>📈 Security Ranking</h2>
+
+        <div class="ranking">
+
+            <div class="rank-item weak"><span class="num">12</span> MD5</div>
+            <div class="rank-item weak"><span class="num">11</span> SHA-1</div>
+
+            <div class="rank-item weak"><span class="num">10</span> Caesar</div>
+            <div class="rank-item weak"><span class="num">9</span> Monoalphabetic</div>
+
+            <div class="rank-item medium"><span class="num">8</span> Affine</div>
+            <div class="rank-item medium"><span class="num">7</span> Rail Fence</div>
+            <div class="rank-item medium"><span class="num">6</span> Columnar</div>
+            <div class="rank-item medium"><span class="num">5</span> Vigenère</div>
+
+            <div class="rank-item strong"><span class="num">4</span> AES</div>
+            <div class="rank-item strong"><span class="num">3</span> RSA</div>
+            <div class="rank-item strong"><span class="num">2</span> SHA-256</div>
+
+            <div class="rank-item perfect"><span class="num">1</span> One-Time Pad</div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

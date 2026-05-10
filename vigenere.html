@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vigenère Cipher</title>
+
+<link href="vigenere.css" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="vigenere.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔑 Vigenère Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            Vigenère Cipher is a polyalphabetic cipher that uses a keyword to apply multiple Caesar shifts.
+            Each letter in the plaintext is shifted based on the corresponding letter in the keyword.
+        </p>
+    </div>
+    <div class="section">
+        <h2> Algorithm</h2>
+        <pre class="algorithm">
+E(i) = (P(i) + K(i mod keylen)) mod 26
+D(i) = (C(i) - K(i mod keylen)) mod 26
+
+Where:
+P = plaintext letter position
+C = ciphertext letter position
+K = keyword letter shift
+        </pre>
+    </div>
+    <div class="examples">
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+
+        <pre class="code-block">
+Plaintext: HELLO WORLD
+Keyword: KEY
+
+Step 1: Repeat keyword
+KEYKEYKEYKE
+
+Step 2: Convert letters
+K=10, E=4, Y=24
+
+Step 3: Encryption
+H + K(10) → R
+E + E(4)  → I
+L + Y(24) → J
+L + K(10) → V
+O + E(4)  → S
+(space stays)
+W + Y(24) → U
+O + K(10) → Y
+R + E(4)  → V
+L + Y(24) → J
+D + K(10) → N
+
+Step 4: Result
+Ciphertext: RIJVS UYVJN
+        </pre>
+    </div>
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+
+        <pre class="code-block">
+Ciphertext: RIJVS UYVJN
+Keyword: KEY
+
+Step 1: Repeat keyword
+KEYKEYKEYKE
+
+Step 2: Decryption
+R - K(10) → H
+I - E(4)  → E
+J - Y(24) → L
+V - K(10) → L
+S - E(4)  → O
+(space stays)
+U - Y(24) → W
+Y - K(10) → O
+V - E(4)  → R
+J - Y(24) → L
+N - K(10) → D
+
+Step 3: Result
+Plaintext: HELLO WORLD
+
+
+
+        </pre>
+    </div>
+    </div>
+    <div class="section">
+        <h2>Try It Yourself</h2>
+
+        <form id="vigenereForm">
+
+            <div class="form-group">
+                <label>Keyword:</label>
+                <input type="text" id="keyword" value="KEY">
+            </div>
+
+            <div class="form-group">
+                <label>Text:</label>
+                <textarea id="inputText">HELLO WORLD</textarea>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-encrypt" onclick="vigenereEncrypt()">🔐 Encrypt</button>
+                <button type="button" class="btn-decrypt" onclick="vigenereDecrypt()">🔓 Decrypt</button>
+            </div>
+
+            <div id="result" class="result">Result will appear here...</div>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

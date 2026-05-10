@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHA-256 Hash</title>
+
+<link rel="stylesheet" href="Hash.css">
+<link rel="stylesheet" href="ui.css">
+<script src="Hash.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🧬 SHA-256 Hash</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+    
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            SHA-256 Hash is a cryptographic hash function that converts any input into a fixed 256-bit output.
+            It is irreversible and used in security systems.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Algorithm</h2>
+
+<pre class="algorithm">
+1. Input Message
+2. Padding
+3. Split into 512-bit blocks
+4. Compression Function
+5. 64 Rounds Processing
+6. Output → 256-bit Hash
+</pre>
+
+    </div>
+
+    <div class="section">
+        <h2>Example</h2>
+
+<pre class="code-block">
+Input: hello
+
+Output:
+SHA-256 = 
+2cf24dba5fb0a30e26e83b2ac5b9e29e...
+</pre>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Try It Yourself</h2>
+
+        <div class="form-group">
+            <label>Text:</label>
+            <textarea id="inputText">hello</textarea>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-encrypt" onclick="generateHash()">🔐 Hash</button>
+        </div>
+
+        <div id="result" class="result">Result will appear here...</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rail Fence Cipher</title>
+<link rel="stylesheet" href="rail.css">
+<link rel="stylesheet" href="ui.css">
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔀 Rail Fence Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+<div class="section">
+    <h2>Overview</h2>
+    <p>
+        Rail Fence Cipher is a classical transposition cipher that does not change the letters themselves,
+        but rearranges their positions in a zigzag pattern across multiple "rails".
+    </p>
+
+    <p>
+        It is called a rail fence because the writing pattern looks like a zigzag fence.
+        The security depends on hiding the arrangement order, not the characters.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Algorithm </h2>
+
+    <pre class="algorithm">
+🔐 ENCRYPTION STEPS:
+
+1. Choose number of rails (key = 3 in our example)
+2. Write the plaintext in zigzag form:
+   move down the rails then up repeatedly
+3. Fill characters row by row in a zigzag pattern
+4. Read each row from top to bottom
+5. Combine rows → Ciphertext
+
+🔓 DECRYPTION STEPS:
+
+1. Create empty zigzag structure based on text length
+2. Mark rail pattern (same zigzag path)
+3. Fill ciphertext row by row into marked positions
+4. Read zigzag path again to recover original text
+    </pre>
+</div>
+<div class="examples">
+<div class="section">
+    <h2>🔐 Worked Example (Encryption)</h2>
+
+    <pre class="code-block">
+Plaintext: HELLOWORLD
+Key (Rails): 3
+
+Step 1: Write in zigzag pattern
+
+Rail 1: H     O     L
+Rail 2:  E   L W   R D
+Rail 3:   L O     O
+
+Step 2: Read row by row
+Rail 1 → HOL
+Rail 2 → ELWRD
+Rail 3 → LOO
+Ciphertext: HOLELWRDLO
+    </pre>
+</div>
+
+<div class="section">
+    <h2>🔓 Worked Example (Decryption)</h2>
+
+    <pre class="code-block">
+Ciphertext: HOLELWRDLO
+Key (Rails): 3
+
+Step 1: Determine zigzag pattern size
+
+Step 2: Fill rows based on rail counts
+
+Rail 1: H   O   L
+Rail 2:  E L W R D
+Rail 3:   L O   O
+
+Step 3: Read zigzag path
+
+Recovered Text: HELLOWORLD
+    </pre>
+</div>
+</div>
+<div class="section">
+    <h2>Try It Yourself</h2>
+
+    <form id="cipherForm">
+
+        <div class="form-group">
+            <label>Key / Shift:</label>
+            <input type="number" id="key" placeholder="Enter key..." required>
+        </div>
+
+        <div class="form-group">
+            <label>Input Text:</label>
+            <textarea id="inputText" placeholder="Enter your text...">HELLO WORLD</textarea>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn-encrypt" onclick="encrypt()">🔐 Encrypt</button>
+            <button type="button" class="btn-decrypt" onclick="decrypt()">🔓 Decrypt</button>
+        </div>
+
+        <div id="result" class="result">
+            Result will appear here...
+        </div>
+
+    </form>
+</div>
+<script src="rail.js"></script>
+
+</body>
+</html>

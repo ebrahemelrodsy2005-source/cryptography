@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monoalphabetic Cipher</title>
+
+<link rel="stylesheet" href="monoalphabetic.css">
+<link rel="stylesheet" href="ui.css">
+<script src="monoalphabetic.js" defer></script>
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🔠 Monoalphabetic Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2> Overview</h2>
+        <p>
+            Monoalphabetic Cipher is a substitution cipher where each letter in the plaintext
+            is replaced with a fixed corresponding letter from a shuffled alphabet.
+            It is a 1-to-1 mapping (bijection).
+        </p>
+    </div>
+    <div class="section">
+        <h2> Algorithm</h2>
+        <pre class="algorithm">
+E(P) = substitution_table[P]
+D(C) = inverse_table[C]
+
+Where:
+- P = plaintext letter
+- C = ciphertext letter
+- Each letter has a unique mapping
+        </pre>
+    </div>
+
+    <div class="examples">
+
+    <div class="section">
+        <h2>🔐 Worked Example (Encryption)</h2>
+        <pre class="code-block">
+Plaintext: HELLO WORLD
+
+Substitution:
+H → W
+E → P
+L → Y
+L → Y
+O → S
+(space)
+W → O
+O → S
+R → F
+L → Y
+D → Z
+
+Step Result:
+Ciphertext: WPYYS OSFYZ
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>🔓 Worked Example (Decryption)</h2>
+        <pre class="code-block">
+Ciphertext: WPYYS OSFYZ
+
+Reverse Mapping:
+W → H
+P → E
+Y → L
+Y → L
+S → O
+(space)
+O → W
+S → O
+F → R
+Y → L
+Z → D
+
+Step Result:
+Plaintext: HELLO WORLD
+        </pre>
+    </div>
+    </div>
+
+
+    <div class="section">
+        <h2> Try It Yourself</h2>
+
+        <form id="monoForm">
+
+            <div class="form-group">
+                <label>Substitution Key (JSON):</label>
+                <textarea id="substKey" rows="4">
+{"A":"X","B":"M","C":"Q","D":"Z","E":"P","F":"T","G":"K",
+"H":"W","I":"N","J":"U","K":"R","L":"Y","M":"B","N":"V",
+"O":"S","P":"G","Q":"J","R":"F","S":"H","T":"C","U":"L",
+"V":"D","W":"O","X":"E","Y":"A","Z":"I"}
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Text:</label>
+                <textarea id="inputText">HELLO WORLD</textarea>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-encrypt" onclick="monoEncrypt()">🔐 Encrypt</button>
+                <button type="button" class="btn-decrypt" onclick="monoDecrypt()">🔓 Decrypt</button>
+            </div>
+
+            <div id="result" class="result">Result will appear here...</div>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

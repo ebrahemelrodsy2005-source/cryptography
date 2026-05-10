@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Explorer</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cryptography Explorer</h1>
+            <p class="subtitle">Discover the art and science of secure communication</p>
+        </header>
+
+        <section class="intro">
+            <h2>What is Cryptography?</h2>
+            <p>Cryptography is the practice and study of techniques for secure communication in the presence of adversarial behavior. It transforms readable data (plaintext) into unreadable data (ciphertext) using algorithms and keys, and vice versa.</p>
+            <p>From ancient Caesar ciphers to modern quantum-resistant algorithms, cryptography has evolved to protect our digital world. This interactive explorer lets you dive into classical ciphers, understand their mechanics, and experiment with encryption and decryption.</p>
+            <p>Each cipher has its unique mathematical foundation, strengths, and vulnerabilities. Explore, learn, and encrypt!</p>
+        </section>
+
+        <section class="ciphers-grid">
+
+        <div class="cipher-card">
+            <div class="cipher-icon">🔠</div>
+            <h3>Monoalphabetic</h3>
+            <p>Single substitution cipher mapping each letter to another.</p>
+            <a href="monoalphabetic.html" class="cipher-btn">Explore Monoalphabetic</a>
+        </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔤</div>
+                <h3>Caesar Cipher</h3>
+                <p>Simple shift cipher where each letter is shifted by a fixed number of positions.</p>
+                <a href="caesar.html" class="cipher-btn">Explore Caesar</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔑</div>
+                <h3>Vigenère Cipher</h3>
+                <p>Polyalphabetic substitution using a keyword for enhanced security.</p>
+                <a href="vigenere.html" class="cipher-btn">Explore Vigenère</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">📊</div>
+                <h3>Hill Cipher</h3>
+                <p>Matrix-based polygraphic substitution cipher using linear algebra.</p>
+                <a href="hill.html" class="cipher-btn">Explore Hill</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔢</div>
+                <h3>Affine Cipher</h3>
+                <p>Combination of Caesar and modular multiplicative cipher.</p>
+                <a href="affine.html" class="cipher-btn">Explore Affine</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🛡️</div>
+                <h3>One-Time Pad (OTP)</h3>
+                <p>Perfectly secure cipher using a random key as long as the message.</p>
+                <a href="otp.html" class="cipher-btn">Explore OTP</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔀</div>
+                <h3>Rail Fence Cipher</h3>
+                <p>Transposition cipher using zigzag pattern on rails</p>
+                <a href="rail.html" class="cipher-btn">Explore Rail</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🧮</div>
+                <h3>Columnar Cipher</h3>
+                <p>transposition technique where plaintext is written row-wise into a grid</p>
+                <a href="columnar.html" class="cipher-btn">Explore Columnar</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔐</div>
+                <h3>RSA Cipher</h3>
+                <p>A public key for encryption and a private key for decryption.</p>
+                <a href="RSA.html" class="cipher-btn">Explore RSA</a>
+            </div>
+
+             <div class="cipher-card">
+                <div class="cipher-icon">🔑</div>
+                <h3>Diffie Hellman</h3>
+                <p>A technique allow two parties to generate a shared secret key.</p>
+                <a href="diffie hellman.html" class="cipher-btn">Diffie Hellman</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">⚡</div>
+                <h3>Stream Cipher</h3>
+                <p>a technique  encrypts data one character (or bit) at a time using XOR.</p>
+                <a href="stream.html" class="cipher-btn">Stream Cipher</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔐</div>
+                <h3>AES Cipher</h3>
+                <p> AES is a symmetric encryption algorithm that works on 128-bit blocks.</p>
+                <a href="AES.html" class="cipher-btn">AES Cipher</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🔐</div>
+                <h3>DES Cipher</h3>
+                <p> is a symmetric block cipher that works on 64-bit blocks using Feistel structure</p>
+                <a href="DES.html" class="cipher-btn">DES Cipher</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">🧬</div>
+                <h3>SHA-256 Hash</h3>
+                <p> A hash function that converts any input into a fixed 256-bit output.</p>
+                <a href="Hash.html" class="cipher-btn">SHA-256 Hash</a>
+            </div>
+
+            <div class="cipher-card">
+                <div class="cipher-icon">⚖️</div>
+                <h3>Comparison</h3>
+                <p>Side-by-side analysis of cipher strengths & weaknesses.</p>
+                <a href="comparison.html" class="cipher-btn">Compare Ciphers</a>
+             </div>
+        </section>
+    </div>
+</body>
+</html>

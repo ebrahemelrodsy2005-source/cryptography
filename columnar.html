@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Columnar Transposition Cipher</title>
+<link rel="stylesheet" href="columnar.css">
+<link rel="stylesheet" href="ui.css">
+</head>
+
+<body>
+<div class="topbar">
+
+    <div class="title">
+        <h1>🧮 Columnar Transposition Cipher</h1>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+    <h2>🔐 Crypto Lab</h2>
+
+    <a href="index.html">🏠 Home</a>
+    <a href="monoalphabetic.html">🔠 Monoalphabetic</a>
+    <a href="caesar.html">🔤 Caesar Cipher</a>
+    <a href="vigenere.html">🔑 Vigenère Cipher</a>
+    <a href="hill.html">📊 Hill Cipher</a>
+    <a href="affine.html">🔢 Affine Cipher</a>
+    <a href="otp.html">🛡️ One-Time Pad (OTP)</a>
+    <a href="rail.html">🔀 Rail Fence Cipher</a>
+    <a href="columnar.html">🧮 Columnar Cipher</a>
+    <a href="RSA.html">🔐 RSA Cipher</a>
+    <a href="diffie hellman.html">🔑 Diffie Hellman</a>
+    <a href="stream.html">⚡ Stream Cipher</a>
+    <a href="AES.html">🔐 AES Cipher</a>
+    <a href="DES.html">🔐 DES Cipher</a>
+    <a href="Hash.html">🧬 SHA-256 Hash</a>
+    <a href="comparison.html">⚖️ Comparison</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");}
+</script>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            Columnar Transposition Cipher is a transposition technique where plaintext is written row-wise into a grid,
+            then read column by column based on a keyword order.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Algorithm</h2>
+        <pre class="algorithm">
+ENCRYPTION:
+1. Choose keyword (ZEBRA)
+2. Write plaintext in rows under keyword length
+3. Assign numbers to keyword letters (alphabetical order)
+4. Read columns in sorted keyword order
+
+DECRYPTION:
+1. Recreate grid using keyword length
+2. Fill columns according to sorted order
+3. Read row by row to recover text
+        </pre>
+    </div>
+
+    <div class="examples">
+   <div class="section">
+    <h2>🔐 Worked Example (Encryption)</h2>
+
+    <pre class="code-block">
+Plaintext: HELLO WORLD
+Keyword: HEMA
+
+Step 1: Determine grid size
+Keyword length = 4
+Text length = 11 (including space)
+Rows = ceil(11 / 4) = 3
+
+Total cells = 3 × 4 = 12
+
+Step 2: Assign alphabetical order to keyword
+A → 1
+E → 2
+H → 3
+M → 4
+
+Step 3: Fill grid row-wise
+
+H   E   M   A
+3   2   4   1   
+H   E   L   L
+O   _   W   O
+R   L   D   x
+
+Step 4: Read columns in sorted order (A E H M)
+
+A → L O x
+E → E   L
+H → H O R
+M → L W D
+
+Step 5: Combine result
+
+Ciphertext = LOX E L HOR LWD
+→ LOXE LHORLWD
+    </pre>
+</div>
+    <div class="section">
+    <h2>🔓 Worked Example (Decryption)</h2>
+
+    <pre class="code-block">
+Ciphertext: LOXELHORLWD
+Keyword: HEMA
+
+Step 1: Determine grid size
+Keyword length = 4
+Ciphertext length = 12
+Rows = 3
+Columns = 4
+
+Total cells = 12
+ Padding character = x
+
+Step 2: Sort keyword
+A E H M
+A → 1
+E → 2
+H → 3
+M → 4
+
+Step 3: Fill columns in sorted order
+
+A → L O x
+E → E   L
+H → H O R
+M → L W D
+
+Step 4: Rebuild grid
+
+H   E   M   A
+H   E   L   L
+O   _   W   O
+R   L   D   x
+
+Step 5: Read row-wise
+HELLO WORLD
+    </pre>
+</div>
+</div>
+<div class="section">
+        <h2>Try It Yourself</h2>
+
+        <form id="cipherForm">
+
+            <div class="form-group">
+                <label>Keyword:</label>
+                <input type="text" id="key" placeholder="Enter keyword...">
+            </div>
+
+            <div class="form-group">
+                <label>Text:</label>
+                <textarea id="inputText">HELLO WORLD</textarea>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-encrypt" onclick="encrypt()">🔐 Encrypt</button>
+                <button type="button" class="btn-decrypt" onclick="decrypt()">🔓 Decrypt</button>
+            </div>
+
+            <div id="result" class="result">Result...</div>
+
+        </form>
+    </div>
+
+</div>
+
+<script src="columnar.js"></script>
+</body>
+</html>
