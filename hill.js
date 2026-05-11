@@ -1,6 +1,6 @@
 let currentSize = 2;
 function updateMatrixInputs() {
-    let currentSize = parseInt(document.getElementById('matrixSize').value);
+    currentSize = parseInt(document.getElementById('matrixSize').value);
     const container = document.getElementById('matrixInputs');
 
     container.innerHTML = '';
